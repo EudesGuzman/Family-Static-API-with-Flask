@@ -57,12 +57,13 @@ def handle_del_single(id):
 @app.route('/member', methods=['POST'])
 def handle_add_single():
     body = request.get_json()
-    body['id']=jackson_family._generateId()
     if body['first_name'] != '' and body['age'] != '' and body['lucky_numbers'] != '':
+        if body['id'] == " ":
+            body['id']=jackson_family._generateId()
         member = jackson_family.add_member(body)
-        return jsonify(member), 200
+        return jsonify({}), 200
     else: 
-        return 'Incomplete member', 400
+        return 'Incomplete member', 400 
 
 # this only runs if `$ python src/app.py` is executed
 if __name__ == '__main__':
