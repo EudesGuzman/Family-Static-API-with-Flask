@@ -51,7 +51,7 @@ def handle_del_single(id):
     if not member:
         return 'Member not found', 400
     else:
-        return jsonify(memberEliminate), 200
+        return jsonify({ "done" : True}), 200
 
 
 @app.route('/member', methods=['POST'])
